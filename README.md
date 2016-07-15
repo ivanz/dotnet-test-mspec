@@ -43,4 +43,4 @@ SUMMARY: Total: 1 targets, Passed: 1, Failed: 0.
 
 ## Note
 
-This tool uses the .Net Core port of Machine.Specifications here: https://einari/machine.specifications.core
+This tool uses the .Net Core port of Machine.Specifications here: https://github.com/einari/machine.specifications.core
