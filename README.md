@@ -7,11 +7,12 @@ It's a package that you can install to add support for MSpec (Machine.Specificat
 
 ## Get started
 
-The only action that you need to take is to install the `dotnet-test-mspec` NuGet package in each project with MSpec tests:
+The only action that you need to take is to install the `dotnet-test-mspec` NuGet package in each project with MSpec tests and set the `testRunner` to `mspec`:
 
 **project.json**
 
 ```json
+  "testRunner": "mspec",
   "dependencies": {
         "Machine.Specifications.Core": "0.5.*",
         "Machine.Specifications.Should.Core": "0.5.*",
