@@ -1,0 +1,27 @@
+{
+    "version": "1-*",
+    "buildOptions": {
+        "emitEntryPoint": false
+    },
+    "testRunner": "mspec",
+    "frameworks": {
+        "netcoreapp1.0": {
+            "dependencies": {
+                "Microsoft.NETCore.App": {
+                    "version": "1.0.0",
+                    "type": "platform"
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "Machine.Specifications.Core": "0.5.*",
+        "Machine.Specifications.Should.Core": "0.5.*",
+        // This comes from the build output of the project: see nuget.config
+        "dotnet-test-mspec": {
+            "version": "0.*",
+            "type": "build",
+            "target": "package"
+        }
+    }
+}
