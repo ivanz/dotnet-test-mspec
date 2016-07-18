@@ -1,16 +1,19 @@
 {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "name": "dotnet-test-mspec",
+    "description": "'dotnet test' support for Machine.Specifications (MSpec).",
     "authors": [
         "Ivan Zlatev"
     ],
+    "projectUrl": "https://github.com/ivanz/dotnet-test-mspec",
     "packOptions": {
         "repository": {
             "type": "git",
             "url": "https://github.com/ivanz/dotnet-test-mspec"
         },
         "tags": [ "mspec", "machine.specifications", "test", "tdd" ],
-        "requireLicenseAcceptance": false
+        "requireLicenseAcceptance": false,
+        "licenseUrl": "https://github.com/ivanz/dotnet-test-mspec/blob/master/LICENSE.txt"
     },
     "buildOptions": {
         "emitEntryPoint": true,
