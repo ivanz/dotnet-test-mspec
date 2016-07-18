@@ -42,7 +42,7 @@ namespace Machine.Specifications.Core.Runner.DotNet.Execution.Console.Outputs
 
         public void SpecificationStart(SpecificationInfo specification)
         {
-            _console.Write("» " + specification.Name);
+            _console.Write(">> " + specification.Name);
         }
 
         public void Passing(SpecificationInfo specification)

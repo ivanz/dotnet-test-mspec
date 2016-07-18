@@ -1,12 +1,12 @@
 {
-    "version": "0.1.1",
+    "version": "0.1.7",
     "name": "dotnet-test-mspec",
     "description": "'dotnet test' support for Machine.Specifications (MSpec).",
     "authors": [
         "Ivan Zlatev"
     ],
-    "projectUrl": "https://github.com/ivanz/dotnet-test-mspec",
     "packOptions": {
+        "projectUrl": "https://github.com/ivanz/dotnet-test-mspec",
         "repository": {
             "type": "git",
             "url": "https://github.com/ivanz/dotnet-test-mspec"
