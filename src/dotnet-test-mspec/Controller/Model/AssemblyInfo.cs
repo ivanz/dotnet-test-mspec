@@ -4,10 +4,9 @@ namespace Machine.Specifications.Runner.DotNet.Controller.Model
 {
     public class AssemblyInfo
     {
-        public AssemblyInfo(string name, string location)
+        public AssemblyInfo(string name)
         {
             this.Name = name;
-            this.Location = location;
         }
 
         public AssemblyInfo()
@@ -15,20 +14,17 @@ namespace Machine.Specifications.Runner.DotNet.Controller.Model
         }
 
         public string Name { get; private set; }
-        public string Location { get; private set; }
         public string CapturedOutput { get; set; }
 
         public static AssemblyInfo Parse(string assemblyInfoXml)
         {
             var document = XDocument.Parse(assemblyInfoXml);
             var name = document.SafeGet<string>("/assemblyinfo/name");
-            var location = document.SafeGet<string>("/assemblyinfo/location");
             var capturedoutput = document.SafeGet<string>("/assemblyinfo/capturedoutput");
 
-            return new AssemblyInfo(name, location)
-                       {
-                           CapturedOutput = capturedoutput
-                       };
+            return new AssemblyInfo(name) {
+                CapturedOutput = capturedoutput
+            };
         }
     }
 }

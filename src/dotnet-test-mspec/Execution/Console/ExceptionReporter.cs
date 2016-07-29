@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Machine.Specifications.Core.Runner.DotNet.Execution.Console
+namespace Machine.Specifications.Runner.DotNet.Execution.Console
 {
     public class ExceptionReporter
     {

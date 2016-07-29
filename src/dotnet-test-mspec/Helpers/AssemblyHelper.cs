@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Machine.Specifications.Core.Runner.DotNet.Helpers
+namespace Machine.Specifications.Runner.DotNet.Helpers
 {
     public static class AssemblyHelper
     {
