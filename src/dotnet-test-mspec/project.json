@@ -1,5 +1,5 @@
 {
-    "version": "0.1.7",
+    "version": "0.2.0-alpha3",
     "name": "dotnet-test-mspec",
     "description": "'dotnet test' support for Machine.Specifications (MSpec).",
     "authors": [
@@ -16,22 +16,37 @@
         "licenseUrl": "https://github.com/ivanz/dotnet-test-mspec/blob/master/LICENSE.txt"
     },
     "buildOptions": {
-        "emitEntryPoint": true,
-        "debugType": "portable"
+        "emitEntryPoint": true
     },
     "frameworks": {
+        "net45": {
+            "frameworkAssemblies": {
+                "System.Xml": "*",
+                "System.Xml.Linq": "*"
+            },
+            "dependencies": {
+                "Machine.Specifications.Runner.Utility": "0.*",
+                "Microsoft.NETCore.Platforms": {
+                    "version": "*",
+                    "type":"build"
+                }
+            }
+        },
         "netcoreapp1.0": {
+            "buildOptions": {
+                "define": [
+                    "NETCORE"
+                ]
+            },
             "dependencies": {
                 "Microsoft.NETCore.App": {
-                    "version": "1.0.0",
+                    "version": "1.*",
                     "type": "platform"
                 },
-                "System.Runtime.Loader": "4.0.0"
+                "System.Runtime.Loader": "4.*",
+                "System.Xml.XPath": "4.*",
+                "System.Xml.XPath.XDocument": "4.*"
             }
         }
-    },
-    "dependencies": {
-        "Microsoft.Extensions.Testing.Abstractions": "1.0.0-preview2-003121",
-        "Machine.Specifications.Core": "0.5.1"
     }
 }

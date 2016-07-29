@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Machine.Specifications.Runner;
+using Machine.Specifications.Runner.DotNet.Controller.Model;
 
-namespace Machine.Specifications.Core.Runner.DotNet.Execution.Console.Outputs
+namespace Machine.Specifications.Runner.DotNet.Execution.Console.Outputs
 {
     class FailedSpecificationsSummary
     {

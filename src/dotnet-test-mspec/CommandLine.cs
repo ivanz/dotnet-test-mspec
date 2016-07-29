@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
-namespace  Machine.Specifications.Runner.DotNet
+namespace Machine.Specifications.Runner.DotNet
 {
 
     public class CommandLine
@@ -60,7 +59,7 @@ namespace  Machine.Specifications.Runner.DotNet
 
                 if (!optionName.StartsWith("-"))
                     throw new ArgumentException(string.Format("unknown command line option: {0}", option.Key));
-               
+
                 // BEGIN: Special command line switches for dotnet <=> Visual Studio integration
                 if (optionName == "-test" || optionName == "--test")
                 {

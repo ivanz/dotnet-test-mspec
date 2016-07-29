@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Machine.Specifications.Core.Runner.DotNet.Execution
+namespace Machine.Specifications.Runner.DotNet.Execution
 {
     public class RunStats
     {
