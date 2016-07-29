@@ -1,5 +1,4 @@
 using System.Reflection;
-using System.Runtime.Loader;
 
 namespace Machine.Specifications.Core.Runner.DotNet.Helpers
 {
@@ -7,7 +6,11 @@ namespace Machine.Specifications.Core.Runner.DotNet.Helpers
     {
         public static Assembly Load(string assemblyPath)
         {
-            return AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath);
+#if NETCORE
+            return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath);
+#else
+            return Assembly.LoadFrom(assemblyPath);
+#endif
         }
     }
 }

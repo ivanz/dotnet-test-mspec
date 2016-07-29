@@ -1,18 +1,14 @@
 using System;
-using Machine.Specifications.Core.Runner.DotNet.Configuration;
-using Machine.Specifications.Core.Runner.DotNet.Discovery;
-using Machine.Specifications.Core.Runner.DotNet.Discovery.Console;
-using Machine.Specifications.Core.Runner.DotNet.Execution;
+using System.IO;
+using System.Reflection;
 using Machine.Specifications.Core.Runner.DotNet.Execution.Console;
-using Machine.Specifications.Core.Runner.DotNet.Execution.DesignTime;
-using Microsoft.Extensions.Testing.Abstractions;
+using Machine.Specifications.Core.Runner.DotNet.Helpers;
+using Machine.Specifications.Runner.DotNet.Controller;
 
 namespace Machine.Specifications.Runner.DotNet
 {
     public class Program
     {
-        private static ITestDiscoverySink _testDiscoverySink;
-        private static ITestExecutionSink _testExecutionSink;
 
         public static void Main(string[] args)
         {
@@ -20,40 +16,28 @@ namespace Machine.Specifications.Runner.DotNet
 
             if (commandLine.DesignTime) {
                 throw new NotSupportedException("DesignTime mode is not supported yet.");
-            } else {
-                _testDiscoverySink = new StreamingTestDiscoverySink(Console.OpenStandardOutput());
-                _testExecutionSink = new StreamingTestExecutionSink(Console.OpenStandardOutput());
             }
 
 
-            Settings settings = new Settings();
+            ConsoleOutputRunListener runListener = new ConsoleOutputRunListener();
+
+            string assemblyPath = commandLine.AssemblyFile;
+            string mspecPath = Path.Combine(Path.GetDirectoryName(assemblyPath),
+                                            "Machine.Specifications.dll");
+
+            Assembly mspecAssembly = AssemblyHelper.Load(mspecPath);
+            Assembly testAssembly = AssemblyHelper.Load(assemblyPath);
+
+            TestController testController = new TestController(mspecAssembly, runListener);
+
 
             if (commandLine.List) {
-
-                IDiscoveryVisitor discoveryVisitor;
-
-                if (commandLine.DesignTime) {
-                    //discoveryVisitor = new DesignTimeDiscoveryVisitor(...sink...);
-                    throw new NotSupportedException("DesignTime mode is not supported yet.");
-                } else {
-                    discoveryVisitor = new ConsoleDiscoveryVisitor();
-                }
-
-                AssemblySpecificationDiscoverer discoverer = new AssemblySpecificationDiscoverer(discoveryVisitor);
-                discoverer.Discover(commandLine.AssemblyFile);
+                Console.WriteLine(testController.DiscoverTestsRaw(testAssembly));
             } else {
+                testController.RunAssemblies(new[] { testAssembly });
 
-                ISpecificationRunListener runListener;
-
-                if (commandLine.DesignTime) {
-                    throw new NotSupportedException("DesignTime mode is not supported yet.");
-                    // runListener = new DesignTimeSpecificationRunListener(_estExecutionSink, settings);
-                } else {
-                    runListener = new ConsoleOutputRunListener();
-                }
-
-                AssemblySpecificationRunner runner = new AssemblySpecificationRunner(runListener);
-                runner.Run(commandLine.AssemblyFile);
+                if (runListener.FailureOccurred)
+                                Environment.Exit(-1);
             }
         }
     }

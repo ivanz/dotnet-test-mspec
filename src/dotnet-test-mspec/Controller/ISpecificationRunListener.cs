@@ -1,0 +1,25 @@
+﻿using Machine.Specifications.Runner.DotNet.Controller.Model;
+
+namespace Machine.Specifications.Runner.DotNet.Controller
+{
+    public interface ISpecificationRunListener
+    {
+        void OnAssemblyStart(AssemblyInfo assemblyInfo);
+
+        void OnAssemblyEnd(AssemblyInfo assemblyInfo);
+
+        void OnRunStart();
+
+        void OnRunEnd();
+
+        void OnContextStart(ContextInfo contextInfo);
+
+        void OnContextEnd(ContextInfo contextInfo);
+
+        void OnSpecificationStart(SpecificationInfo specificationInfo);
+
+        void OnSpecificationEnd(SpecificationInfo specificationInfo, Result result);
+
+        void OnFatalError(ExceptionResult exceptionResult);
+    }
+}

@@ -1,4 +1,4 @@
-using Machine.Specifications.Runner;
+using Machine.Specifications.Runner.DotNet.Controller.Model;
 
 namespace Machine.Specifications.Core.Runner.DotNet.Execution.Console.Outputs
 {

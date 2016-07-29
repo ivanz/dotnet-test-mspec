@@ -1,10 +1,11 @@
 using System;
 using Machine.Specifications.Core.Runner.DotNet.Execution.Console.Outputs;
-using Machine.Specifications.Runner;
+using Machine.Specifications.Runner.DotNet.Controller;
+using Machine.Specifications.Runner.DotNet.Controller.Model;
 
 namespace Machine.Specifications.Core.Runner.DotNet.Execution.Console
 {
-    public class ConsoleOutputRunListener : ISpecificationRunListener, ISpecificationResultProvider
+    public class ConsoleOutputRunListener : ISpecificationRunListener
     {
         readonly IConsole _console;
         readonly RunStats _timer;
