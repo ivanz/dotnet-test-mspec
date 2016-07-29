@@ -23,3 +23,9 @@ artifacts:
 
 test: off
 
+deploy:
+- provider: NuGet
+  api_key:
+    secure: R+qirYPrTX9IzJHpRLL6KAV1Lo+vlAnInf6ShiIB2rAGIP28ceJxRAh1jirHE/uD
+  on:
+    appveyor_repo_tag: true
