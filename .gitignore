@@ -33,6 +33,8 @@ NDependOut
 .vs/
 .vscode/
 
+/Build
+
 # OS generated files #
 ######################
 .DS_Store

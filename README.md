@@ -1,7 +1,15 @@
 
-[![Issue Board](https://badge.waffle.io/ivanz/dotnet-test-mspec.svg?title=Roadmap%20and%20Task%20Board)](http://waffle.io/ivanz/dotnet-test-mspec)
+## Status
 
-Adds support for Machine.Specification tests to `dotnet test` and support running them on the following frameworks:
+[![Issue Board](https://badge.waffle.io/ivanz/dotnet-test-mspec.svg?title=Issue%20Board)](http://waffle.io/ivanz/dotnet-test-mspec)
+
+
+[![Build status](https://ci.appveyor.com/api/projects/status/k5o2bvt24a775h96?svg=true)](https://ci.appveyor.com/project/machine-specifications/dotnet-test-mspec)
+
+
+## What is this?
+
+`dotnet-test-mspec` adds support for Machine.Specification tests to `dotnet test` and support running them on the following frameworks:
 
 * .NET Core 1.0+
 * .NET 4.5+
