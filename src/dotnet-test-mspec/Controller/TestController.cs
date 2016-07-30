@@ -13,7 +13,7 @@ namespace Machine.Specifications.Runner.DotNet.Controller
     // Used to implement version agnostic test runners
     public class TestController
     {
-        private const string CONTROLLER_TYPE = "Machine.Specifications.Controller.TestController";
+        private const string CONTROLLER_TYPE = "Machine.Specifications.Controller.Controller";
         private const string START_RUN_METHOD = "StartRun";
         private const string END_RUN_METHOD = "EndRun";
 

@@ -1,5 +1,5 @@
 environment:
-  nuget_version: '0.2.0-alpha6'
+  nuget_version: '0.2.0-alpha7'
   assembly_version: '1.0.0'
 
 clone_depth: 5
