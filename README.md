@@ -1,9 +1,7 @@
 
 ## Status
 
-[![Issue Board](https://badge.waffle.io/ivanz/dotnet-test-mspec.svg?title=Issue%20Board)](http://waffle.io/ivanz/dotnet-test-mspec)
-
-
+Please open issues here: https://github.com/machine/machine.specifications
 [![Build status](https://ci.appveyor.com/api/projects/status/k5o2bvt24a775h96?svg=true)](https://ci.appveyor.com/project/machine-specifications/dotnet-test-mspec)
 
 
