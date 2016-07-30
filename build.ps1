@@ -75,10 +75,9 @@ if ($testsFailed) {
 
 
 # NuGet packaging
-if ($Version) {
-    Write-Host "Creating a nuget package in ${PackageOutputDirectory}"
 
-    $Package | ForEach {
-        Invoke-ExpressionExitCodeCheck "dotnet pack $($_) -c ${Configuration} -o ${PackageOutputDirectory}"
-    }
+Write-Host "Creating a nuget package in ${PackageOutputDirectory}"
+
+$Package | ForEach {
+    Invoke-ExpressionExitCodeCheck "dotnet pack $($_) -c ${Configuration} -o ${PackageOutputDirectory}"
 }
