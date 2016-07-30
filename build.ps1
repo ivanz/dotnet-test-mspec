@@ -79,5 +79,5 @@ if ($testsFailed) {
 Write-Host "Creating a nuget package in ${PackageOutputDirectory}"
 
 $Package | ForEach {
-    Invoke-ExpressionExitCodeCheck "dotnet pack $($_) -c ${Configuration} -o ${PackageOutputDirectory}"
+    Invoke-ExpressionExitCodeCheck "dotnet pack ${CodeDirectory}\$($_) -c ${Configuration} -o ${PackageOutputDirectory}"
 }
