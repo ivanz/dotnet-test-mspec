@@ -12,5 +12,14 @@ namespace Machine.Specifications.Runner.DotNet.Helpers
             return Assembly.LoadFrom(assemblyPath);
 #endif
         }
+
+        public static Assembly Load(AssemblyName assemblyName)
+        {
+#if NETCORE
+            return System.Runtime.Loader.AssemblyLoadContext.Default.LoadFromAssemblyName(assemblyName);
+#else
+            return Assembly.Load(assemblyName);
+#endif
+        }
     }
 }
