@@ -25,7 +25,6 @@
                 "System.Xml.Linq": "*"
             },
             "dependencies": {
-                "Machine.Specifications.Runner.Utility": "0.*",
                 "Microsoft.NETCore.Platforms": {
                     "version": "*",
                     "type":"build"
