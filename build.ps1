@@ -1,8 +1,14 @@
 Param(
-    [switch] $CI,
-    [string] $Version = "0.2.0-alpha3",
-    [string] $Configuration = "Release"
+    [string] $Configuration = "Debug",
+    [string] $CodeDirectory = ".",
+    [string] $TestsDirectory = ".",
+    [string] $PackageOutputDirectory = "Build",
+    [string] $Version,
+    [string[]] $Package = @()
 )
+
+$tests = Get-ChildItem $TestsDirectory -Directory | where { $_.FullName -imatch "^.*\.(?:Specs|Tests|Test)$" }
+$projects = Get-ChildItem $CodeDirectory -Recurse -File -Filter "project.json"
 
 function Invoke-ExpressionExitCodeCheck([string] $command)
 {
@@ -13,15 +19,11 @@ function Invoke-ExpressionExitCodeCheck([string] $command)
     }
 }
 
-[string] $testProjectsDirectory = "test"
-[string] $codeProjectsDirectory = "src"
-[string] $nugetOutputDirectory = "Build"
-
 # Patch version
-if ($CI) {
-    Write-Host "Patching versions to ${version}..."
+if ($Version) {
+    Write-Host "Patching versions to ${Version}..."
 
-    Get-ChildItem $codeProjectsDirectory -Recurse -File -Filter "project.json" | ForEach {
+    $projects | ForEach {
         Write-Host "Updating version: $($_.FullName)"
 
         $foundVersion = $false; # replace only the first occurance of versin (assumes package version is on top)
@@ -40,24 +42,23 @@ if ($CI) {
     }
 }
 
-# Restore Packages
-Write-Host "Restoring packages..."
-
-Invoke-ExpressionExitCodeCheck "dotnet restore"
-
-
 # Build
+
+Write-Host "Restoring packages..."
+Invoke-ExpressionExitCodeCheck "dotnet restore" -ErrorAction Stop
+
 Write-Host "Building in ${Configuration}..."
+Invoke-ExpressionExitCodeCheck "dotnet build ${CodeDirectory}\**\project.json -c ${Configuration}" -ErrorAction Stop
 
-Invoke-ExpressionExitCodeCheck "dotnet build ${codeProjectsDirectory}\**\project.json -c ${configuration}" -ErrorAction Stop
 
+# Test
 
-# Run tests
 Write-Host "Running tests..."
 
 [bool] $testsFailed = $false
+$tests | ForEach {
+    Invoke-ExpressionExitCodeCheck "dotnet build $($_.FullName)" -ErrorAction Stop
 
-Get-ChildItem $testProjectsDirectory -Directory | ForEach {
     Invoke-Expression "dotnet test $($_.FullName)"
 
     if (!$testsFailed) {
@@ -72,11 +73,12 @@ if ($testsFailed) {
     Write-Host -BackgroundColor Green -ForegroundColor White "All good!"
 }
 
-# NuGet packaging
-if ($CI) {
-    Write-Host "Creating a nuget package in ${nugetOutputDirectory}"
 
-    Get-ChildItem $codeProjectsDirectory -Directory | ForEach {
-        Invoke-ExpressionExitCodeCheck "dotnet pack $($_.FullName) -c ${configuration} -o ${nugetOutputDirectory} --version-suffix ${version}"
+# NuGet packaging
+if ($Version) {
+    Write-Host "Creating a nuget package in ${PackageOutputDirectory}"
+
+    $Package | ForEach {
+        Invoke-ExpressionExitCodeCheck "dotnet pack $($_) -c ${Configuration} -o ${PackageOutputDirectory}"
     }
 }

@@ -1,5 +1,5 @@
 environment:
-  nuget_version: '0.2.0-alpha5'
+  nuget_version: '0.2.0-alpha6'
   assembly_version: '1.0.0'
 
 clone_depth: 5
@@ -17,7 +17,7 @@ assembly_info:
 
 build_script:
 - cmd: >-
-    powershell -f build.ps1 -CI -Version "%NUGET_VERSION%" -Configuration %CONFIGURATION%"
+    powershell -f build.ps1 -CodeDirectory "src" -TestsDirectory "test" -PackageOutputDirectory "Build" -Package "dotnet-test-mspec" -Version "%NUGET_VERSION%" -Configuration "%CONFIGURATION%"
 artifacts:
 - path: Build\*.nupkg
 
