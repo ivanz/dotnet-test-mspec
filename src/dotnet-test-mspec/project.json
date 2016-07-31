@@ -1,5 +1,5 @@
 {
-    "version": "0.2.0-alpha3",
+    "version": "0.1-ivanz2",
     "name": "dotnet-test-mspec",
     "description": "'dotnet test' support for Machine.Specifications (MSpec).",
     "authors": [
@@ -42,7 +42,6 @@
                     "version": "1.*",
                     "type": "platform"
                 },
-                "System.Runtime.Loader": "4.*",
                 "System.Xml.XPath": "4.*",
                 "System.Xml.XPath.XDocument": "4.*"
             }
