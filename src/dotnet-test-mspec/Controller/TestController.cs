@@ -30,7 +30,13 @@ namespace Machine.Specifications.Runner.DotNet.Controller
 
         private object CreateController(Assembly frameworkAssembly)
         {
-            return Activator.CreateInstance(_frameworkAssembly.GetType(CONTROLLER_TYPE), (Action<string>)OnListenEvent);
+            object controller = Activator.CreateInstance(_frameworkAssembly.GetType(CONTROLLER_TYPE), (Action<string>)OnListenEvent);
+            string version = (string) controller.GetType().GetProperty("Version", BindingFlags.Static | BindingFlags.GetProperty).GetValue(null);
+
+            if (!version.StartsWith("1."))
+                throw new NotSupportedException($"This version of the MSpec test runner is not compatible with the version of Machine.Specifications. (found test controller version: {version})");
+
+            return controller;
         }
 
         public void RunAssemblies(IEnumerable<Assembly> assemblies)
@@ -56,7 +62,7 @@ namespace Machine.Specifications.Runner.DotNet.Controller
         {
             return (string)_controller
                                 .GetType()
-                                .GetMethod("DiscoverTests")
+                                .GetMethod("DiscoverSpecs")
                                 .Invoke(_controller, new object[] { assembly });
         }
 
