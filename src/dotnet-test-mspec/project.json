@@ -39,11 +39,11 @@
             },
             "dependencies": {
                 "Microsoft.NETCore.App": {
-                    "version": "1.*",
+                    "version": "1.0.0",
                     "type": "platform"
                 },
-                "System.Xml.XPath": "4.*",
-                "System.Xml.XPath.XDocument": "4.*"
+                "System.Xml.XPath": "4.0.1",
+                "System.Xml.XPath.XDocument": "4.0.1"
             }
         }
     }
