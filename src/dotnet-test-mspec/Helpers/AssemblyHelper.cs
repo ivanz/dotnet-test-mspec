@@ -15,5 +15,14 @@ namespace Machine.Specifications.Runner.DotNet.Helpers
             return Assembly.LoadFrom(assemblyPath);
 #endif
         }
+
+        public static string GetVersion(this Assembly assembly)
+        {
+            AssemblyInformationalVersionAttribute versionInfo = assembly.GetCustomAttribute(typeof(AssemblyInformationalVersionAttribute)) as AssemblyInformationalVersionAttribute;
+            if (versionInfo != null)
+                return versionInfo.InformationalVersion;
+            else
+                return assembly.GetName().Version.ToString();
+        }
     }
 }

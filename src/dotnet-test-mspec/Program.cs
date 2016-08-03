@@ -12,6 +12,8 @@ namespace Machine.Specifications.Runner.DotNet
     {
         public static void Main(string[] args)
         {
+            PrintVersionInfo(typeof(Program).GetTypeInfo().Assembly);
+
             CommandLine commandLine = CommandLine.Parse(args);
 
             if (commandLine.DesignTime) {
@@ -24,6 +26,9 @@ namespace Machine.Specifications.Runner.DotNet
             Assembly mspecAssembly = AssemblyHelper.LoadTestAssemblyOrDependency(
                 Path.Combine(Path.GetDirectoryName(assemblyPath), "Machine.Specifications.dll")
             );
+
+            PrintVersionInfo(mspecAssembly);
+
 
             ConsoleOutputRunListener runListener = new ConsoleOutputRunListener();
             ISpecificationRunListener allListeneres = new AggregateRunListener(new ISpecificationRunListener[] {
@@ -39,8 +44,13 @@ namespace Machine.Specifications.Runner.DotNet
                 testController.RunAssemblies(new[] { testAssembly });
 
                 if (runListener.FailureOccurred)
-                                Environment.Exit(-1);
+                    Environment.Exit(-1);
             }
+        }
+
+        private static void PrintVersionInfo(Assembly assembly)
+        {
+            Console.WriteLine(assembly.GetName().Name + ": " + assembly.GetVersion());
         }
     }
 }
