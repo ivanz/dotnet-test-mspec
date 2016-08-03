@@ -33,7 +33,9 @@ namespace Machine.Specifications.Runner.DotNet
             ConsoleOutputRunListener runListener = new ConsoleOutputRunListener();
             ISpecificationRunListener allListeneres = new AggregateRunListener(new ISpecificationRunListener[] {
                 runListener,
+#if !UWP
                 new AssemblyLocationAwareRunListener(new[] {testAssembly})
+#endif
             });
 
             TestController testController = new TestController(mspecAssembly, allListeneres);
@@ -43,8 +45,13 @@ namespace Machine.Specifications.Runner.DotNet
             } else {
                 testController.RunAssemblies(new[] { testAssembly });
 
-                if (runListener.FailureOccurred)
+                if (runListener.FailureOccurred) {
+#if UWP
+                    throw new Exception("Tests failed"); // TODO
+#else
                     Environment.Exit(-1);
+#endif
+                }
             }
         }
 

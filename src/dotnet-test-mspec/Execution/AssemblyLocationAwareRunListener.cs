@@ -1,3 +1,4 @@
+#if !UWP
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,7 +28,6 @@ namespace Machine.Specifications.Runner.DotNet.Execution
         public void OnAssemblyStart(AssemblyInfo assembly)
         {
             Assembly loadedAssebmly = _assemblies.FirstOrDefault(a => a.GetName().Name.Equals(assembly.Name, StringComparison.OrdinalIgnoreCase));
-
             Directory.SetCurrentDirectory(Path.GetDirectoryName(loadedAssebmly.Location));
         }
 
@@ -64,3 +64,4 @@ namespace Machine.Specifications.Runner.DotNet.Execution
         }
     }
 }
+#endif

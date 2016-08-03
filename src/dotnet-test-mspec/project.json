@@ -17,15 +17,20 @@
     "buildOptions": {
         "emitEntryPoint": true
     },
+    "runtimes": {
+        "win10-arm": {},
+        "win10-x86": {},
+        "win10-x64": {}
+    },
     "frameworks": {
         "net45": {
             "frameworkAssemblies": {
-                "System.Xml": "*",
-                "System.Xml.Linq": "*"
+                "System.Xml": "",
+                "System.Xml.Linq": ""
             },
             "dependencies": {
                 "Microsoft.NETCore.Platforms": {
-                    "version": "*",
+                    "version": "1.*",
                     "type":"build"
                 }
             }
@@ -43,6 +48,21 @@
                 },
                 "System.Xml.XPath": "4.0.1",
                 "System.Xml.XPath.XDocument": "4.0.1"
+            }
+        },
+        "uap10.0": {
+            "buildOptions": {
+                "define": [
+                    "UWP"
+                ]
+            },
+            "dependencies": {
+                "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
+                "System.Console": "4.0.0",
+                "System.Xml.XPath": "4.0.1",
+                "System.Xml.XPath.XDocument": "4.0.1",
+                "System.Runtime.Extensions":"4.1.0",
+                "Microsoft.Win32.Primitives": "4.0.1" // solves warning about downgrade
             }
         }
     }
