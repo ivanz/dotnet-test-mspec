@@ -31,7 +31,7 @@ namespace Machine.Specifications.Runner.DotNet.Controller
         private object CreateController(Assembly frameworkAssembly)
         {
             object controller = Activator.CreateInstance(_frameworkAssembly.GetType(CONTROLLER_TYPE), (Action<string>)OnListenEvent);
-            string version = (string) controller.GetType().GetProperty("Version", BindingFlags.Static | BindingFlags.GetProperty).GetValue(null);
+            string version = (string) controller.GetType().GetProperty("Version").GetValue(null);
 
             if (!version.StartsWith("1."))
                 throw new NotSupportedException($"This version of the MSpec test runner is not compatible with the version of Machine.Specifications. (found test controller version: {version})");
