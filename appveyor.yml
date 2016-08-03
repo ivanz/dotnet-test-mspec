@@ -1,5 +1,5 @@
 environment:
-  nuget_version: '0.2.0-alpha92'
+  nuget_version: '0.2.0-alpha93'
   nuget_prerelease: true
   assembly_version: '0.2.0'
 
