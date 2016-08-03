@@ -24,7 +24,7 @@ namespace Machine.Specifications.Runner.DotNet.Execution.Console
         {
             _console = new DefaultConsole();
             _timer = new RunStats();
-            _output = new VerboseOutput(_console);
+            _output = new ProgressOutput(_console);
             _summary = new FailedSpecificationsSummary(new VerboseOutput(_console), _console);
         }
 
