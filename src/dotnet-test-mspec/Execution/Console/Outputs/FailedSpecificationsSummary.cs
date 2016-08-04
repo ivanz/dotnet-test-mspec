@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Machine.Specifications.Runner.DotNet.Controller.Model;
 
@@ -38,8 +39,8 @@ namespace Machine.Specifications.Runner.DotNet.Execution.Console.Outputs
                 return;
             }
 
-            _console.WriteLine();
-            _console.WriteLine();
+            _console.WriteLine(String.Empty);
+            _console.WriteLine(String.Empty);
             _console.WriteLine("Failures:");
 
             _failures
@@ -63,8 +64,8 @@ namespace Machine.Specifications.Runner.DotNet.Execution.Console.Outputs
                 return;
             }
 
-            _console.WriteLine();
-            _console.WriteLine();
+            _console.WriteLine(String.Empty);
+            _console.WriteLine(String.Empty);
             _console.WriteLine("Fatal Errors:");
 
             _fatalErrors

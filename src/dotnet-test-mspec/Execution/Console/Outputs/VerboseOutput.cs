@@ -1,3 +1,4 @@
+using System;
 using Machine.Specifications.Runner.DotNet.Controller.Model;
 
 namespace Machine.Specifications.Runner.DotNet.Execution.Console.Outputs
@@ -74,8 +75,8 @@ namespace Machine.Specifications.Runner.DotNet.Execution.Console.Outputs
 
         void EmptyLine()
         {
-            _console.WriteLine();
-            _console.WriteLine();
+            _console.WriteLine(String.Empty);
+            _console.WriteLine(String.Empty);
         }
     }
 }
