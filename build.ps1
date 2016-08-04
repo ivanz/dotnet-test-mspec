@@ -59,7 +59,7 @@ Write-Host "Running tests..."
 $tests | ForEach {
     Invoke-ExpressionExitCodeCheck "dotnet build $($_.FullName)" -ErrorAction Stop
 
-    Invoke-Expression "dotnet test $($_.FullName)"
+    Invoke-Expression "dotnet test $($_.FullName) -c ${Configuration}"
 
     if (!$testsFailed) {
         $testsFailed = $LASTEXITCODE -and $LASTEXITCODE -ne 0
