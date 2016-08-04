@@ -38,7 +38,8 @@ namespace Machine.Specifications.Runner.DotNet.Execution.Console.Outputs
                 return;
             }
 
-            _console.WriteLine("");
+            _console.WriteLine();
+            _console.WriteLine();
             _console.WriteLine("Failures:");
 
             _failures
@@ -62,7 +63,8 @@ namespace Machine.Specifications.Runner.DotNet.Execution.Console.Outputs
                 return;
             }
 
-            _console.WriteLine("");
+            _console.WriteLine();
+            _console.WriteLine();
             _console.WriteLine("Fatal Errors:");
 
             _fatalErrors

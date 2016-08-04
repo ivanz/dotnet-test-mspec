@@ -74,7 +74,8 @@ namespace Machine.Specifications.Runner.DotNet.Execution.Console.Outputs
 
         void EmptyLine()
         {
-            _console.WriteLine("");
+            _console.WriteLine();
+            _console.WriteLine();
         }
     }
 }

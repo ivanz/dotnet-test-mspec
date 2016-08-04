@@ -1,6 +1,5 @@
 {
     "version": "0.1-ivanz2",
-    "name": "dotnet-test-mspec",
     "description": "'dotnet test' support for Machine.Specifications (MSpec).",
     "authors": [
         "Ivan Zlatev"
