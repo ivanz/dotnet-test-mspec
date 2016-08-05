@@ -1,13 +1,12 @@
 environment:
-  nuget_version: '0.2.0'
-  nuget_prerelease: false
+  nuget_version: '0.2.1-alpha1'
+  nuget_prerelease: true
   assembly_version: '0.2.0.0'
 
 deploy:
   - provider: GitHub
     description: |
-      * The test runner is now expecting Machine.Specifications 0.11.0 or newer
-      * Support for the obsolete and deprecated "Machine.Specifications.Core" in v0.1 has been removed.
+      * add lines here
 
     on:
       appveyor_repo_tag: true
